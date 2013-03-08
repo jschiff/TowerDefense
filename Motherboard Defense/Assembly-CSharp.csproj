@@ -44,8 +44,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\CubeSpawner.cs" />
+     <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\Grid\Coordinate.cs" />
-     <Compile Include="Assets\Scripts\Grid\CubeSpawner.cs" />
      <Compile Include="Assets\Scripts\Grid\GridLocation.cs" />
      <Compile Include="Assets\Scripts\Grid\GridModel.cs" />
      <Compile Include="Assets\Scripts\Grid\GridScript.cs" />
