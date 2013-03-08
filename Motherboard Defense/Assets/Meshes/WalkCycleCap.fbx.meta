@@ -1,0 +1,172 @@
+fileFormatVersion: 2
+guid: 372fdcdfd79b2814d9c0f2dd57b38b01
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Body
+    100002: Cap
+    100004: Cap1
+    100006: Cap2
+    100008: Cap3
+    100010: Cap4
+    100012: Cap5
+    100014: Hips
+    100016: LAnkle1
+    100018: LAnkle2
+    100020: LAnkle3
+    100022: LKneeBottom
+    100024: LKneeTop
+    100026: LLeg
+    100028: LLegJoint
+    100030: LMidFoot
+    100032: LToes1
+    100034: LToes2
+    100036: LToes3
+    100038: RAnkle1
+    100040: RAnkle2
+    100042: RAnkle3
+    100044: RKneeBottom
+    100046: RKneeTop
+    100048: RLeg
+    100050: RLegJoint
+    100052: RMidFoot
+    100054: RToes1
+    100056: RToes2
+    100058: RToes3
+    100060: Socket
+    100062: //RootNode
+    400000: Body
+    400002: Cap
+    400004: Cap1
+    400006: Cap2
+    400008: Cap3
+    400010: Cap4
+    400012: Cap5
+    400014: Hips
+    400016: LAnkle1
+    400018: LAnkle2
+    400020: LAnkle3
+    400022: LKneeBottom
+    400024: LKneeTop
+    400026: LLeg
+    400028: LLegJoint
+    400030: LMidFoot
+    400032: LToes1
+    400034: LToes2
+    400036: LToes3
+    400038: RAnkle1
+    400040: RAnkle2
+    400042: RAnkle3
+    400044: RKneeBottom
+    400046: RKneeTop
+    400048: RLeg
+    400050: RLegJoint
+    400052: RMidFoot
+    400054: RToes1
+    400056: RToes2
+    400058: RToes3
+    400060: Socket
+    400062: //RootNode
+    4300000: Cap
+    4300002: RLeg
+    4300004: LLeg
+    7400000: Walk
+    7400002: Random
+    9500000: //RootNode
+    13700000: Cap
+    13700002: LLeg
+    13700004: RLeg
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations:
+    - name: Walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
+    - name: Random
+      takeName: Take 001
+      firstFrame: 42
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: Cap
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
