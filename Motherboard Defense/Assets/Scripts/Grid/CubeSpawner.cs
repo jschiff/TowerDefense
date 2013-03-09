@@ -23,13 +23,19 @@ public class CubeSpawner : MonoBehaviour {
 	private LinkedList<Coordinate> path = null;
 	public float spacing = 0.0f; // uniform spacing around grid cubes
 	public float cubeSize = 1.0f;
-	public float travelTime = .2f; // time it takes to go from one block to the next
+	public float speed = 8f; // Number of units enemy moves per second
 	private static Vector3 maxVec = Vector3.one * float.MaxValue;
+	public Coordinate start = new Coordinate(4, 0);
+	public Coordinate[] end;
+	private Coordinate enemyTarget = new Coordinate(4, 0);
+	private Coordinate enemyLocation = new Coordinate(4, 0);
+	private LinkedListNode<Coordinate> node;
 	
 	// Use this for initialization
 	void Start () {
 		generateGrid();
 		loadOffScreenCubes();
+		pathFinder = (Transform)Instantiate(actor, gridLocations[0, 0], Quaternion.identity);
 	}
 	
 	// Load cubes off screen so they dont cause stutter when they are initialized
@@ -186,7 +192,7 @@ public class CubeSpawner : MonoBehaviour {
 		
 		Coordinate coord = getCoordinateFromWorldPosition(baseBlock.position, Vector3.down, width, height);
 		
-		if(model.isOccupied(coord) || enemyLocation.Equals(coord)) {
+		if(model.isOccupied(coord) || enemyTarget.Equals(coord)) {
 			return;	// May as well do this before bothering to simulate for performance
 		}
 		
@@ -205,7 +211,7 @@ public class CubeSpawner : MonoBehaviour {
 	
 	private void drawPreviewBlock(Transform baseBlock) {
 		Coordinate coord = getCoordinateFromWorldPosition(baseBlock.position, Vector3.down, width, height);
-		if(!model.isOccupied(coord) && !model.isOccupied(enemyLocation)) {
+		if(!model.isOccupied(coord) && !model.isOccupied(enemyTarget)) {
 			spawnPreviewCube(gridLocations[coord.x, coord.y]);
 		}
 	}
@@ -224,19 +230,38 @@ public class CubeSpawner : MonoBehaviour {
 	
 	// Enemy AI
 	private void updateEnemyPosition() {
-		timeSinceLastMove += Time.deltaTime;
+		float travelDistance = Time.deltaTime * speed;
+		Vector3 targetLocation = gridLocations[enemyTarget.x, enemyTarget.y];
+		Vector3 currentLocation = pathFinder.position;
 		
-		if(timeSinceLastMove > travelTime) {
-			Coordinate next = getNextCoordinate();
-			enemyLocation = next;
-			pathFinder.position = gridLocations[next.x, next.y];
-			timeSinceLastMove = 0; // Keep most accurate time we can
+		// Simulate movement.
+		while (travelDistance > 0) {
+			Vector3 diff = targetLocation - currentLocation;
+			float diffMag = diff.magnitude;
+			
+			if(travelDistance >= diffMag) {
+				currentLocation = targetLocation;
+				enemyLocation = enemyTarget;
+				enemyTarget = getNextCoordinate();
+				if (enemyTarget == start){
+					currentLocation = gridLocations[start.x, start.y];
+				}
+				targetLocation = gridLocations[enemyTarget.x, enemyTarget.y];
+				travelDistance -= diffMag;
+			}
+			else {
+				currentLocation += (diff.normalized * travelDistance);
+				travelDistance = 0;
+			}
+			
 		}
+		
+		pathFinder.position = currentLocation;
 	}
 	
 	private Coordinate getNextCoordinate() {
 		if(path == null || node == null) {
-			Coordinate fromC = enemyLocation;
+			Coordinate fromC = enemyTarget;
 			Coordinate[] toC = end;
 			if (contains(toC, fromC)) {
 				return start;
@@ -244,10 +269,6 @@ public class CubeSpawner : MonoBehaviour {
 			
 			path = model.getPath(fromC, toC);
 			node = path.First.Next;
-			
-			if(pathFinder == null){
-				pathFinder = (Transform)Instantiate(actor, gridLocations[0, 0], Quaternion.identity);
-			}
 		}
 				
 		var temp = node;
@@ -265,10 +286,6 @@ public class CubeSpawner : MonoBehaviour {
 		return false;
 	}
 	
-	public Coordinate start = new Coordinate(4, 0);
-	public Coordinate[] end;
-	private Coordinate enemyLocation = new Coordinate(4, 0);
-	private LinkedListNode<Coordinate> node;
 	private static string testGrid = 
 @"0000001111
 1111101111
